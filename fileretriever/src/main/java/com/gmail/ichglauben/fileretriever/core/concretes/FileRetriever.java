@@ -1,12 +1,13 @@
 package com.gmail.ichglauben.fileretriever.core.concretes;
 
+import java.io.File;
+
 import javax.swing.JFileChooser;
 
 import com.gmail.ichglauben.fileretriever.core.utils.abstracts.CustomClass;
+import com.gmail.ichglauben.fileretriever.core.utils.concretes.GlobalConstants;
 
 public class FileRetriever extends CustomClass {
-	private static String path = null;
-	private static java.io.File file;
 	private final static javax.swing.ImageIcon img = createImageIcon("/medium.gif");
 
 	/** Handles the cancellation of the file browser. */
@@ -25,6 +26,8 @@ public class FileRetriever extends CustomClass {
 	public static String retrieveFile() {
 		detectPlatform();
 		javax.swing.JFileChooser chooser = new javax.swing.JFileChooser();
+		String path = null;
+		File file = null;
 
 		int selectionMode = JFileChooser.FILES_ONLY;
 		chooser.setFileSelectionMode(selectionMode);
@@ -35,7 +38,7 @@ public class FileRetriever extends CustomClass {
 		// if user selects a directory...
 		if (dialog == JFileChooser.APPROVE_OPTION) {
 			file = chooser.getSelectedFile();
-			path = file.getAbsolutePath().trim();
+			path = file.toPath().toAbsolutePath().toString().trim();
 		}
 		// else the user cancelled the dialog
 		else {
@@ -48,6 +51,8 @@ public class FileRetriever extends CustomClass {
 	public static String retrieveFile(String desc, String[] exts) {
 		detectPlatform();
 		javax.swing.JFileChooser chooser = new javax.swing.JFileChooser();
+		String path = null;
+		File file = null;
 
 		// TODO - set a file extension filter
 		// TODO - test filter
@@ -65,7 +70,7 @@ public class FileRetriever extends CustomClass {
 		// if user selects a directory...
 		if (dialog == JFileChooser.APPROVE_OPTION) {
 			file = chooser.getSelectedFile();
-			path = file.getAbsolutePath().trim();
+			path = file.toPath().toAbsolutePath().toString().trim();
 		}
 		// else the user cancelled the dialog
 		else {
@@ -87,6 +92,6 @@ public class FileRetriever extends CustomClass {
 	}
 
 	public String toString() {
-		return "FileRetriever";
+		return "File Retriever";
 	}
 }
