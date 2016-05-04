@@ -10,5 +10,8 @@ public class App extends CustomClass {
 		
 		file = FileRetriever.retrieveFile("Jpegs", new String[] {"jpg"});
 		print("Chosen File: " + file); 
+		
+		file = FileRetriever.retrieveFile("Text Files", new String[] {"txt"});
+		print("Chosen File: " + file); 
 	}
 }
